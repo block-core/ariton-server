@@ -119,3 +119,10 @@ npm cache clean --force
 ```sh
 npm install @web/dwn-server
 ```
+
+
+## Linux Service
+
+```
+ExecStart=/bin/bash -c 'source /root/.nvm/nvm.sh && nvm install 18.20.4 && nvm use 18.20.4 && export PATH=$PATH && npm run host'
+```
