@@ -123,6 +123,42 @@ npm install @web/dwn-server
 
 ## Linux Service
 
+### Create deamon file
+
+```sh
+touch /etc/system/system/ariton-dwn.service
+
+nano /etc/system/system/ariton-dwn.service
 ```
+
+```
+[Unit]
+Description=Ariton DWN Daemon
+After=network.target
+Wants=network-online.target
+
+[Service]
+After=network-online.target
+Wants=network-online.target
 ExecStart=/bin/bash -c 'source /root/.nvm/nvm.sh && nvm install 18.20.4 && nvm use 18.20.4 && export PATH=$PATH && npm run host'
+Environment=PATH=/usr/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/root/dwn-server
+User=root
+TimeoutSec=120
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```sh
+sudo systemctl daemon-reload
+
+sudo systemctl enable ariton-dwn.service
+
+sudo systemctl restart ariton-dwn.service
+
+# See logs
+sudo journalctl -u ariton-dwn.service -xe
 ```
