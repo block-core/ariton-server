@@ -123,7 +123,7 @@ npm install @web/dwn-server
 
 ## Linux Service
 
-### Create deamon file
+### Create daemon file
 
 ```sh
 touch /etc/system/system/ariton-dwn.service
